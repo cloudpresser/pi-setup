@@ -19,6 +19,3 @@ cd ./Rpanion-server/deploy && ./RasPi2-3-4-5-deploy.sh && ./deploy/wifi_access_p
 # Prevent ssh freezing by setting TOS (type Of Service) field to Cs0, Cs0 (aka 0x00, 0x00) <==> (best effort, best effort)
 echo "IPQoS cs0 cs0" >> /etc/ssh/sshd_config
 
-# Reboot
-sudo reboot
-
