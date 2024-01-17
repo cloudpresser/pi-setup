@@ -13,4 +13,4 @@ git clone --recursive https://github.com/stephendade/Rpanion-server.git
 git clone https://github.com/cloudpresser/pi-setup.git
 
 # Deploy rpanion
-cd ./Rpanion-server/deploy && tmux new-session -s deploy_rpanion './RasPi2-3-4-5-deploy.sh'
+cd ./Rpanion-server/deploy && tmux new-session -d -s deploy_rpanion './RasPi2-3-4-5-deploy.sh'
