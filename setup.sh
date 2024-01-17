@@ -2,9 +2,7 @@
 sudo apt install git tmux
 
 # Prevent ssh freezing by setting TOS (type Of Service) field to Cs0, Cs0 (aka 0x00, 0x00) <==> (best effort, best effort)
-sudo echo "IPQoS cs0 cs0" >> /etc/ssh/sshd_config
-
-cd ~/
+echo "IPQoS cs0 cs0" | sudo tee -a /etc/ssh/sshd_config
 
 # Clone rpanion
 git clone --recursive https://github.com/stephendade/Rpanion-server.git
