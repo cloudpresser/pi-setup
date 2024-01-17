@@ -2,7 +2,7 @@
 sudo apt install git tmux
 
 # Prevent ssh freezing by setting TOS (type Of Service) field to Cs0, Cs0 (aka 0x00, 0x00) <==> (best effort, best effort)
-echo "IPQoS cs0 cs0" >> /etc/ssh/sshd_config
+sudo echo "IPQoS cs0 cs0" >> /etc/ssh/sshd_config
 
 cd ~/
 
