@@ -46,7 +46,7 @@ sudo systemctl disable dnsmasq
 sudo systemctl enable NetworkManager
 
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
-$NVM_DIR/nvm.sh
+source $HOME/.nvm/nvm.sh
 
 nvm install --lts
 nvm use --lts
