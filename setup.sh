@@ -51,6 +51,11 @@ source $HOME/.nvm/nvm.sh
 nvm install --lts
 nvm use --lts
 
+
+## Creates a symlink to /usr/bin/node after using nvm (https://gist.github.com/MeLlamoPablo/0abcc150c10911047fd9e5041b105c34)
+sudo ln -s $(which node) /usr/bin/
+sudo ln -s $(which npm) /usr/bin/
+
 ## Configure nmcli to not need sudo
 sudo sed -i.bak -e '/^\[main\]/aauth-polkit=false' /etc/NetworkManager/NetworkManager.conf
 
