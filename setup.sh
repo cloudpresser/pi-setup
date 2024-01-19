@@ -1,10 +1,7 @@
 #!/bin/bash
 
 # Get git & tmux
-sudo apt -y install git tmux
-
-## Start tmux session 
-tmux
+sudo apt -y install git
 
 # Clone rpanion
 git clone --recursive https://github.com/stephendade/Rpanion-server.git
