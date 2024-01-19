@@ -60,10 +60,13 @@ sudo sed -i.bak -e '/^\[main\]/aauth-polkit=false' /etc/NetworkManager/NetworkMa
 ## and build & run Rpanion
 ./build_rpanion.sh
 
+## Setup arducam
+../../pi-setup/setupArducam.sh
+
 ## For wireguard. Must be installed last as it messes the DNS resolutions
 sudo apt install -y resolvconf
 
-# Prevent ssh freezing by setting TOS (type Of Service) field to Cs0, Cs0 (aka 0x00, 0x00) <==> (best effort, best effort)
+## Prevent ssh freezing by setting TOS (type Of Service) field to Cs0, Cs0 (aka 0x00, 0x00) <==> (best effort, best effort)
 echo "IPQoS cs0 cs0" | sudo tee -a /etc/ssh/sshd_config
 
 sudo reboot
