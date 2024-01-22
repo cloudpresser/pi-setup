@@ -11,6 +11,3 @@ chmod +x install_pivariety_pkgs.sh
 
 # Hawkeye drivers
 ./install_pivariety_pkgs.sh -p 64mp_pi_hawk_eye_kernel_driver
-
-# Reboot
-sudo reboot
