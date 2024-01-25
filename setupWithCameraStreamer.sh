@@ -65,13 +65,16 @@ sudo sed -i.bak -e '/^\[main\]/aauth-polkit=false' /etc/NetworkManager/NetworkMa
 ## and build & run Rpanion
 ./build_rpanion.sh
 
+cd ../..
+
 ## Setup arducam
-##../../pi-setup/setupArducam.sh
-PACKAGE=camera-streamer-$(test -e /etc/default/raspberrypi-kernel && echo raspi || echo generic)_0.2.8.$(. /etc/os-release; echo $VERSION_CODENAME)_$(dpkg --print-architecture).deb
-wget "https://github.com/ayufan/camera-streamer/releases/download/v0.2.8/$PACKAGE"
-sudo apt install "$PWD/$PACKAGE"
-ls -al /usr/share/camera-streamer/examples/
-systemctl enable /usr/share/camera-streamer/examples/camera-streamer-arducam-64MP.service
+./pi-setup/setupArducam.sh
+
+git clone https://github.com/ayufan-research/camera-streamer.git --recursive
+apt-get -y install libavformat-dev libavutil-dev libavcodec-dev libcamera-dev liblivemedia-dev v4l-utils pkg-config xxd build-essential cmake libssl-dev
+cd camera-streamer/
+make
+sudo make install
 systemctl start camera-streamer-arducam-64MP
 
 ## For wireguard. Must be installed last as it messes the DNS resolutions
