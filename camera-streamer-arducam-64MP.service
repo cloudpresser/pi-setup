@@ -1,0 +1,36 @@
+[Unit]
+Description=camera-streamer web camera for ArduCAM 16MP on Raspberry PI
+After=network.target
+ConditionPathExists=/sys/bus/i2c/drivers/arducam_64mp/10-001a/video4linux
+
+[Service]
+
+ExecStart=/usr/local/bin/camera-streamer \
+  -camera-path=/base/soc/i2c0mux/i2c@1/arducam_64mp@1a \
+  -camera-type=libcamera \
+  -camera-format=YUYV \
+  -camera-fps=30 \
+  -camera-width=2328 -camera-height=1748 --camera-snapshot.height=1080 --camera-video.height=720 --camera-stream.height=480 \
+  ; use two memory buffers to optimise usage
+  -camera-nbufs=2 \
+  ; enable continuous autofocus
+  -camera-options=AfMode=2 \
+  -camera-options=AfRange=2 \
+  -camera-vflip=1 \
+  --http-listen=0.0.0.0 \
+  --http-port=8080 \
+  -rtsp-port
+
+DynamicUser=yes
+SupplementaryGroups=video i2c
+Restart=always
+RestartSec=10
+Nice=10
+IOSchedulingClass=idle
+IOSchedulingPriority=7
+CPUWeight=20
+AllowedCPUs=1-2
+MemoryMax=250M
+
+[Install]
+WantedBy=multi-user.target

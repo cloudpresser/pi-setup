@@ -11,3 +11,15 @@ chmod +x install_pivariety_pkgs.sh
 
 # Hawkeye drivers
 ./install_pivariety_pkgs.sh -p 64mp_pi_hawk_eye_kernel_driver
+
+git clone https://github.com/ayufan-research/camera-streamer.git --recursive
+sudo apt-get -y install libavformat-dev libavutil-dev libavcodec-dev libcamera-dev liblivemedia-dev v4l-utils pkg-config xxd build-essential cmake libssl-dev
+
+cd camera-streamer/
+make
+sudo make install
+
+cd ..
+
+systemctl enable $PWD/pi-setup/camera-streamer-arducam-64MP.service
+systemctl start camera-streamer-arducam-64MP.service
